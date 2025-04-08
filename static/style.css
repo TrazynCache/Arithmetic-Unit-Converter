@@ -1,0 +1,124 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    width: 90%;
+    max-width: 500px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #ffd700;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #e0e0e0;
+}
+
+.converter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+label {
+    font-size: 1.1rem;
+    color: #f0f0f0;
+}
+
+select, input[type="text"] {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    outline: none;
+    transition: box-shadow 0.3s;
+}
+
+    select:focus, input[type="text"]:focus {
+        box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    }
+
+.btn {
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    background: #ffd700;
+    color: #1e3c72;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+    .btn:hover {
+        background: #ffcc00;
+    }
+
+.reverse-btn {
+    background: #2a5298;
+    color: #fff;
+}
+
+    .reverse-btn:hover {
+        background: #1e3c72;
+    }
+
+.result {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    text-align: center;
+}
+
+    .result.reverse {
+        background: rgba(255, 215, 0, 0.2);
+    }
+
+strong {
+    color: #ffd700;
+}
+
+.error {
+    color: #ff4d4d;
+    background: rgba(255, 0, 0, 0.2);
+    padding: 0.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.warning {
+    color: #ffd700;
+    background: rgba(255, 215, 0, 0.2);
+    padding: 0.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    text-align: center;
+}

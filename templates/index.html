@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Unit Converter</h1>
+        <p class="subtitle">Convert lengths, temperatures, and more with ease!</p>
+
+        <!-- Display error message if it exists -->
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <!-- Display warning message if units are the same -->
+        {% if warning %}
+        <div class="warning">{{ warning }}</div>
+        {% endif %}
+
+        <form method="POST" class="converter-form">
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select name="category" id="category" onchange="this.form.submit()">
+                    <option value="">Select a category</option>
+                    {% for cat in categories %}
+                    <option value="{{ cat }}" {{ 'selected="selected"' if cat == request.form.category else '' }}>{{ cat.capitalize() }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            {% if units and request.form.category in units %}
+            <div class="form-group">
+                <label for="value">Value:</label>
+                <input type="text" name="value" id="value" value="{{ request.form.value or '' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="from_unit">From:</label>
+                <select name="from_unit" id="from_unit" onchange="this.form.submit()">
+                    {% for unit in units[request.form.category] %}
+                    <option value="{{ unit }}" {{ 'selected="selected"' if unit == request.form.from_unit else '' }}>{{ unit.capitalize() }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="to_unit">To:</label>
+                <select name="to_unit" id="to_unit" onchange="this.form.submit()">
+                    {% for unit in units[request.form.category] %}
+                    <option value="{{ unit }}" {{ 'selected="selected"' if unit == request.form.to_unit else '' }}>{{ unit.capitalize() }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit" class="btn">Convert</button>
+            <button type="submit" name="reverse" value="true" class="btn reverse-btn">Reverse It</button>
+            {% endif %}
+
+            {% if result is not none %}
+            <div class="result">
+                <p>{{ request.form.value }} {{ request.form.from_unit }} = <strong>{{ "%.2f"|format(result) }} {{ request.form.to_unit }}</strong></p>
+            </div>
+            {% endif %}
+            {% if reverse_result is not none %}
+            <div class="result reverse">
+                <p>{{ "%.2f"|format(result) }} {{ request.form.to_unit }} = <strong>{{ "%.2f"|format(reverse_result) }} {{ request.form.from_unit }}</strong></p>
+            </div>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
